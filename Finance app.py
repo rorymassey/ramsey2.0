@@ -18,22 +18,47 @@ def calculate(*args):
     except ValueError:
         pass
 
-#def display():
- #   try: 
-  #  except: 
+#display total
+def display(*args):
+    try: 
+        with open("totaldollars.txt", "r" ) as file:
+            x = file.read().split("\n")
+            total_of_file = 0.00
+            #calculate total
+            for y in x:
+                start = 'Amount:'
+                end = ', Description'
+                start_index = y.find(start) + len(start)
+                end_index = y.find(end)
+                temp = y[start_index:end_index]
+                if temp:
+                    total_of_file += float(temp)
+            #pass value out to tkinter        
+            total_of_file1.set(f"${total_of_file}")    
+    except: 
+        pass
+
+
+def run_all_funcs():
+    try:
+        calculate()
+        display()
+     
+    except:
+        pass
 
 
 root = Tk()
 root.title("Balance Sheet")
-
 mainframe = ttk.Frame(root, padding=(200, 200, 400, 400))
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 #mainframe.config(background="#360e40")
-
 dollars = StringVar()
 total = StringVar()
 description = StringVar()
+total_of_file1 = StringVar()
 #amt of transaction 
+display()
 dollars_entry = ttk.Entry(mainframe, width=10, textvariable=dollars)
 dollars_entry.grid(column=2, row=2, sticky=(W, E))
 #description of transaction 
@@ -48,6 +73,7 @@ date_entry = ttk.Entry(mainframe, width=10, textvariable=date)
 date_entry.grid(column=2, row=4, sticky=(W, E))
 
 #displays the total added amt (maybe change this )
+ttk.Label(mainframe, textvariable=total_of_file1).grid(column=2, row=9, sticky=(W, E))
 ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
 #ttk.Label(mainframe, textvariable=description).grid(column=2, row=5, sticky=(W, E))
 #todo: add a place to put a discription of transaction 
@@ -57,9 +83,9 @@ ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
 ttk.Label(mainframe, text="Addtional transactions").grid(column=2, row=1, sticky=W)
 ttk.Label(mainframe, text="Dollars:").grid(column=1, row=2, sticky=W)
 ttk.Label(mainframe, text="Description:").grid(column=1, row=3, sticky=W)
-ttk.Label(mainframe, text="Total").grid(column=1, row=8, sticky=E)
+ttk.Label(mainframe, text="Total").grid(column=1, row=9, sticky=E)
 ttk.Label(mainframe, text="Date").grid(column=1, row=4, sticky=W)
-ttk.Button(mainframe, text="Add", command=calculate).grid(column=3, row=4, sticky=W)
+ttk.Button(mainframe, text="Add", command=run_all_funcs).grid(column=3, row=4, sticky=W)
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 mainframe.columnconfigure(2, weight=1)
@@ -67,5 +93,5 @@ for child in mainframe.winfo_children():
     child.grid_configure(padx=5, pady=5)
 dollars_entry.focus()
 
-root.bind("<Return>", calculate)
+#root.bind("<Return>", run_all_funcs)
 root.mainloop()

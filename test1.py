@@ -18,9 +18,20 @@ def calculate(*args):
     except ValueError:
         pass
 
-#def display():
- #   try: 
-  #  except: 
+def display():
+    try: 
+        with open("totaldollars.txt", "a" ) as file:
+            x = file.read()
+            print('1')
+            print(x)
+    except: 
+        pass
+def run_all_funcs():
+    try:
+        display()
+        calculate()
+    except:
+        pass
 
 
 root = Tk()
@@ -59,7 +70,7 @@ ttk.Label(mainframe, text="Dollars:").grid(column=1, row=2, sticky=W)
 ttk.Label(mainframe, text="Description:").grid(column=1, row=3, sticky=W)
 ttk.Label(mainframe, text="Total").grid(column=1, row=8, sticky=E)
 ttk.Label(mainframe, text="Date").grid(column=1, row=4, sticky=W)
-ttk.Button(mainframe, text="Add", command=calculate).grid(column=3, row=4, sticky=W)
+ttk.Button(mainframe, text="Add", command=run_all_funcs).grid(column=3, row=4, sticky=W)
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 mainframe.columnconfigure(2, weight=1)
