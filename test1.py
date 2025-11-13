@@ -27,14 +27,26 @@ dollars = StringVar()
 
 total = StringVar()
 description = StringVar()
+#amt of transaction 
 dollars_entry = ttk.Entry(mainframe, width=10, textvariable=dollars)
 dollars_entry.grid(column=2, row=2, sticky=(W, E))
 #description of transaction 
-
 description_entry = ttk.Entry(mainframe, width=10, textvariable=description)
 description_entry.grid(column=2, row=3, sticky=(W, E))
-ttk.Label(mainframe, textvariable=total).grid(column=2, row=4, sticky=(W, E))
-ttk.Label(mainframe, textvariable=description).grid(column=2, row=5, sticky=(W, E))
+
+date = StringVar()
+#date of transaction (prepopulates with today's date)
+ugly_date = value= datetime.now()
+date =  str(ugly_date.month) + '-'+ str(ugly_date.day) + '-'+ str(ugly_date.year)
+
+date_entry = ttk.Entry(mainframe, width=10, textvariable=date)
+date_entry.grid(column=2, row=4, sticky=(W, E))
+
+
+
+#displays the total added amt (maybe change this )
+ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
+#ttk.Label(mainframe, textvariable=description).grid(column=2, row=5, sticky=(W, E))
 #todo: add a place to put a discription of transaction 
 #todo: add a place to put a date of Transaction
 #todo: output the total of the month for starters and other handy reports like a balance sheet ect. 
@@ -42,7 +54,7 @@ ttk.Label(mainframe, textvariable=description).grid(column=2, row=5, sticky=(W, 
 ttk.Label(mainframe, text="Addtional transactions").grid(column=2, row=1, sticky=W)
 ttk.Label(mainframe, text="Dollars:").grid(column=1, row=2, sticky=W)
 ttk.Label(mainframe, text="Description:").grid(column=1, row=3, sticky=W)
-ttk.Label(mainframe, text="Total").grid(column=1, row=4, sticky=E)
+ttk.Label(mainframe, text="Total").grid(column=1, row=8, sticky=E)
 ttk.Label(mainframe, text="Dollars").grid(column=4, row=4, sticky=W)
 ttk.Button(mainframe, text="Add", command=calculate).grid(column=3, row=4, sticky=W)
 root.columnconfigure(0, weight=1)
