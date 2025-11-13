@@ -1,15 +1,1 @@
-Amount: 24.0
-Amount: 25.0
-Amount: 3.0
-Amount: 3.0
-Amount: 4.0
-Date added:2025-11-11 11:56:50.734690 ,Amount: 23.0
-Date added:2025-11-11 11:56:53.062897 ,Amount: 25.0
-Date added:2025-11-11 11:56:54.582157 ,Amount: 62.0
-Date added:2025-11-11 11:56:56.334029 ,Amount: 77.0
-Date added:2025-11-11 12:05:31.191853 ,Amount: 88.0
-Date added:2025-11-12 11:08:56.040063 ,Amount: 333.0
-Date added:2025-11-12 14:49:00.847017 ,Amount: 123.0
-Date added:2025-11-12 19:42:20.847710 ,Amount: 3.0
-Date added:2025-11-12 20:51:30.803626 ,Amount: 13.0
-Date added:2025-11-12 20:51:33.202150 ,Amount: 13.0
+Date added:2025-11-13 09:19:21.708435, Amount: 33333.0, Description: asdf, Date of transaction: 11-13-2025 
