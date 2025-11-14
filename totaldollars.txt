@@ -1,3 +1,16 @@
-Date added:2025-11-13 12:34:15.281729, Amount: 1.0, Description: asd, Date of transaction: 11-13-2025 
-Date added:2025-11-13 12:34:17.817730, Amount: 2.0, Description: asd, Date of transaction: 11-13-2025 
-Date added:2025-11-13 12:34:24.936769, Amount: 33.0, Description: , Date of transaction: 11-13-2025 
+Date added:2025-11-14 15:30:48.159262, Amount: 333.0, Description: test1, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:30:57.183532, Amount: 88.0, Description: test2, Date of transaction: 11-11-2025 
+Date added:2025-11-14 15:31:23.544424, Amount: 99.0, Description: test3, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:31:44.552545, Amount: 1.0, Description: test5, Date of transaction: 11-12-2025 
+Date added:2025-11-14 15:47:47.531022, Amount: 48948.9, Description: test5, Date of transaction: 11-12-2025 
+Date added:2025-11-14 15:50:53.540700, Amount: 2345.0, Description: asdf, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:51:22.956193, Amount: 1.0, Description: new test, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:52:37.580595, Amount: 42356.0, Description: sd, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:52:43.220714, Amount: 2.0, Description: assseee, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:52:57.605011, Amount: 2.0, Description: assseee, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:52:57.763238, Amount: 2.0, Description: assseee, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:53:50.862298, Amount: 32154.0, Description: a, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:53:53.773398, Amount: 1.0, Description: a1, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:54:18.069252, Amount: 1.0, Description: 1, Date of transaction: 11-14-2025 
+Date added:2025-11-14 15:54:23.244742, Amount: 22.0, Description: 1, Date of transaction: 11-1-2025 
+Date added:2025-11-14 15:54:27.325375, Amount: 333.0, Description: 1asdfr, Date of transaction: 11-1-2025 

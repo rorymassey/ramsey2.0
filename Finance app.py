@@ -2,6 +2,11 @@ from tkinter import *
 from tkinter import ttk
 from datetime import datetime
 #from PIL import *
+import sqlite3
+
+# Connect to an existing database or create a new one
+
+
 
 def calculate(*args):
     try:
@@ -17,6 +22,28 @@ def calculate(*args):
             #file.write(f"Inches: {value * 12}")
     except ValueError:
         pass
+
+
+#add values from input to table
+def add_to_table(*args):
+    try:
+        conn = sqlite3.connect("transactions.db")
+        cursor  = conn.cursor()
+        auto_date = datetime.now()
+        dollars_db = float(dollars.get())
+        description_db = description.get()
+        date_db = date.get()
+        cursor.execute(
+            """CREATE TABLE IF NOT EXISTS transactions (id INTEGER PRIMARY KEY, date_added TEXT, amount TEXT, date_of_transaction TEXT, description TEXT, hide INTEGER )"""
+        )
+        cursor.execute(
+            "INSERT INTO  transactions (date_added, amount, date_of_transaction,description, hide) VALUES (?,?,?,?,?)", (str(auto_date),str(dollars_db),str(date_db),str(description_db), 1)
+        )
+        conn.commit()
+        conn.close()
+    except ValueError:
+        pass
+
 
 #display total
 def display(*args):
@@ -43,6 +70,8 @@ def run_all_funcs():
     try:
         calculate()
         display()
+        add_to_table()
+       
      
     except:
         pass
