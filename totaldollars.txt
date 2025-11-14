@@ -14,3 +14,4 @@ Date added:2025-11-14 15:53:53.773398, Amount: 1.0, Description: a1, Date of tra
 Date added:2025-11-14 15:54:18.069252, Amount: 1.0, Description: 1, Date of transaction: 11-14-2025 
 Date added:2025-11-14 15:54:23.244742, Amount: 22.0, Description: 1, Date of transaction: 11-1-2025 
 Date added:2025-11-14 15:54:27.325375, Amount: 333.0, Description: 1asdfr, Date of transaction: 11-1-2025 
+Date added:2025-11-14 15:59:37.782456, Amount: 354.0, Description: lil comment , Date of transaction: 11-14-2025 

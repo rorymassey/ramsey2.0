@@ -3,6 +3,7 @@ from tkinter import ttk
 from datetime import datetime
 #from PIL import *
 import sqlite3
+import ctypes
 
 # Connect to an existing database or create a new one
 
@@ -76,9 +77,14 @@ def run_all_funcs():
     except:
         pass
 
+#change the icon for windows 
+
+
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("fi.mycompany.334488jksethut")
 
 root = Tk()
 root.title("Balance Sheet")
+root.iconbitmap("money.ico")
 mainframe = ttk.Frame(root, padding=(200, 200, 400, 400))
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 #mainframe.config(background="#360e40")
