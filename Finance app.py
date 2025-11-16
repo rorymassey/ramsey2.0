@@ -66,12 +66,28 @@ def display(*args):
     except: 
         pass
 
+def display_line_items(*args):
+    conn = sqlite3.connect("transactions.db")
+    cursor  = conn.cursor()
+    cursor.execute("select * From transactions")
+# Fetch all rows
+    rows = cursor.fetchall()
+# Convert to dictionary (id as key, name as value)
+    result_dict = {row[0]: (row[2],row[3],row[4]) for row in rows}
+    #display all active lines in tk form 
+
+    #print(result_dict)
+    conn.commit()
+    conn.close()
+    return result_dict
+
 
 def run_all_funcs():
     try:
         calculate()
         display()
         add_to_table()
+        display_line_items()
        
      
     except:
@@ -99,6 +115,7 @@ dollars_entry.grid(column=2, row=2, sticky=(W, E))
 #description of transaction 
 description_entry = ttk.Entry(mainframe, width=10, textvariable=description)
 description_entry.grid(column=2, row=3, sticky=(W, E))
+
 #date of transaction (prepopulates with today's date but its modifiable)
 date = StringVar()
 ugly_date = datetime.now()
@@ -110,6 +127,32 @@ date_entry.grid(column=2, row=4, sticky=(W, E))
 #displays the total added amt (maybe change this )
 ttk.Label(mainframe, textvariable=total_of_file1).grid(column=2, row=9, sticky=(W, E))
 ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
+
+# display all results of active transactions
+test = display_line_items()
+#print(test)
+x = StringVar()
+x.set("23")
+#var = StringVar()
+
+vars_list = []
+y = 11
+for i in test:
+    #print(test[i])
+    temp = test[i]
+    print(temp)
+    var = StringVar()
+    var.set( '"'+str(temp)+'"')
+    vars_list.append(var)
+    #var = test[i]
+    ttk.Label(mainframe, textvariable=var).grid(column=2, row=y, sticky=(W, E))
+    y+= 1 
+#while x < 13:
+    #print(x)
+    #x+=1
+    #test = i[1]
+    #ttk.Label(mainframe, textvariable=x).grid(column=2, row=x, sticky=(W, E))
+
 #ttk.Label(mainframe, textvariable=description).grid(column=2, row=5, sticky=(W, E))
 #todo: add a place to put a discription of transaction 
 #todo: add a place to put a date of Transaction
@@ -128,5 +171,5 @@ for child in mainframe.winfo_children():
     child.grid_configure(padx=5, pady=5)
 dollars_entry.focus()
 
-#root.bind("<Return>", run_all_funcs)
+root.bind("<Return>", run_all_funcs)
 root.mainloop()
