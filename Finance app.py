@@ -133,16 +133,17 @@ test = display_line_items()
 #print(test)
 x = StringVar()
 x.set("23")
-#var = StringVar()
 
+#prevent garabage collection of the var values 
 vars_list = []
 y = 11
+#for loop to print out the values 
 for i in test:
     #print(test[i])
     temp = test[i]
     print(temp)
     var = StringVar()
-    var.set( '"'+str(temp)+'"')
+    var.set('Amount: '+ str(temp[0]) + ' Date: ' + temp[1] + ' Description: '+ temp[2])
     vars_list.append(var)
     #var = test[i]
     ttk.Label(mainframe, textvariable=var).grid(column=2, row=y, sticky=(W, E))
