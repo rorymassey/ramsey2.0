@@ -131,47 +131,41 @@ ttk.Label(mainframe, textvariable=total_of_file1).grid(column=2, row=9, sticky=(
 ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
 
 
-# Create Listbox
-listbox = Listbox(mainframe, height=10, width=30)
+# Create box to display the whole dang list
+listbox = Listbox(mainframe, height=20, width=100)
 listbox.grid(row=11, column =0, sticky = 'ns')
 
 # Add items to Listbox
-for i in range(50):
-    listbox.insert(END, f"Item {i+1}")
-
-# Create Scrollbar
-scrollbar = Scrollbar(mainframe, orient=VERTICAL)
-scrollbar.grid(row=11, column =1, sticky = 'ns')
-
-# Link Scrollbar and Listbox
-listbox.config(yscrollcommand=scrollbar.set)
-scrollbar.config(command=listbox.yview)
+#for i in range(50):
+ #   listbox.insert(END, f"Item {i+1}")
 
 
 # display all results of active transactions
-test = display_line_items()
-#print(test)
-x = StringVar()
-x.set("23")
+all_display_items = display_line_items()
 #prevent garabage collection of the var values 
 vars_list = []
 y = 23
 #for loop to print out the values 
-for i in test:
+for i in all_display_items:
     #print(test[i])
-    temp = test[i]
-    print(temp)
+    temp = all_display_items[i]
+    #print(temp)
     var = StringVar()
-    var.set('Amount: '+ str(temp[0]) + ' Date: ' + temp[1] + ' Description: '+ temp[2])
     vars_list.append(var)
-    #var = test[i]
-    ttk.Label(mainframe, textvariable=var).grid(column=2, row=y, sticky=(W, E))
+    var = all_display_items[i]
+    print(var)
+    #ttk.Label(mainframe, textvariable=var).grid(column=2, row=y, sticky=(W, E))
+    listbox.insert(END, f"Amount: {var[0]} Date: {var[1]} Description: {var[2]}")
     y+= 1 
-#while x < 13:
-    #print(x)
-    #x+=1
-    #test = i[1]
-    #ttk.Label(mainframe, textvariable=x).grid(column=2, row=x, sticky=(W, E))
+
+# Create Scrollbar
+scrollbar = Scrollbar(mainframe, orient=VERTICAL)
+scrollbar.grid(row=11, column =1, sticky = 'ns')
+#TODO: maybe create a horrizontal scroll bar later? 
+
+# Link Scrollbar and Listbox
+listbox.config(yscrollcommand=scrollbar.set)
+scrollbar.config(command=listbox.yview)
 
 #ttk.Label(mainframe, textvariable=description).grid(column=2, row=5, sticky=(W, E))
 #todo: add a place to put a discription of transaction 

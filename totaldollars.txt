@@ -15,3 +15,7 @@ Date added:2025-11-16 15:31:14.474695, Amount: 3.0, Description: 3, Date of tran
 Date added:2025-11-16 15:36:57.861421, Amount: 32.0, Description: , Date of transaction: 11-11-2025 
 Date added:2025-11-16 15:37:04.123807, Amount: 3233.0, Description: , Date of transaction: 11-1-2025 
 Date added:2025-11-16 15:46:38.761583, Amount: 3.0, Description: sd, Date of transaction: 11-16-2025 
+Date added:2025-11-18 22:04:41.626959, Amount: 33.0, Description: creating a new transaction, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:06:44.410943, Amount: 77.0, Description: paid money to home depot , Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:06:51.428964, Amount: 77.0, Description: paid money to home depot , Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:06:51.961304, Amount: 77.0, Description: paid money to home depot , Date of transaction: 11-18-2025 
