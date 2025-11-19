@@ -152,13 +152,13 @@ ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
 
 
 # Create box to display the whole dang list
-listbox = Listbox(mainframe, height=20, width=100)
-listbox.grid(row=11, column =0, sticky = 'ns')
+listbox = Listbox(mainframe, height=50, width=100)
+listbox.grid(row=11, column =2, sticky = (W, E))
 
 
 # Create Scrollbar
 scrollbar = Scrollbar(mainframe, orient=VERTICAL)
-scrollbar.grid(row=11, column =1, sticky = 'ns')
+scrollbar.grid(row=11, column =3, sticky = (W, E))
 #TODO: maybe create a horrizontal scroll bar later? 
 
 # Link Scrollbar and Listbox
