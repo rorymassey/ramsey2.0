@@ -77,11 +77,31 @@ def display_line_items(*args):
 # Convert to dictionary (id as key, name as value)
     result_dict = {row[0]: (row[2],row[3],row[4]) for row in rows}
     #display all active lines in tk form 
-
     #print(result_dict)
     conn.commit()
     conn.close()
     return result_dict
+
+def reload_list():
+    listbox.delete(0, END)
+    # Retrieve all results of active transactions
+    all_display_items = display_line_items()
+    #prevent garabage collection of the var values 
+    vars_list = []
+    y = 23
+    #for loop to print out the values 
+    for i in all_display_items:
+        #print(test[i])
+        temp = all_display_items[i]
+        #print(temp)
+        var = StringVar()
+        vars_list.append(var)
+        var = all_display_items[i]
+        print(var)
+        #ttk.Label(mainframe, textvariable=var).grid(column=2, row=y, sticky=(W, E))
+        listbox.insert(END, f"Amount: {var[0]} Date: {var[1]} Description: {var[2]}")
+        y+= 1 
+
 
 
 def run_all_funcs():
@@ -90,7 +110,7 @@ def run_all_funcs():
         display()
         add_to_table()
         display_line_items()
-       
+        reload_list()
      
     except:
         pass
@@ -135,28 +155,6 @@ ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
 listbox = Listbox(mainframe, height=20, width=100)
 listbox.grid(row=11, column =0, sticky = 'ns')
 
-# Add items to Listbox
-#for i in range(50):
- #   listbox.insert(END, f"Item {i+1}")
-
-
-# display all results of active transactions
-all_display_items = display_line_items()
-#prevent garabage collection of the var values 
-vars_list = []
-y = 23
-#for loop to print out the values 
-for i in all_display_items:
-    #print(test[i])
-    temp = all_display_items[i]
-    #print(temp)
-    var = StringVar()
-    vars_list.append(var)
-    var = all_display_items[i]
-    print(var)
-    #ttk.Label(mainframe, textvariable=var).grid(column=2, row=y, sticky=(W, E))
-    listbox.insert(END, f"Amount: {var[0]} Date: {var[1]} Description: {var[2]}")
-    y+= 1 
 
 # Create Scrollbar
 scrollbar = Scrollbar(mainframe, orient=VERTICAL)
@@ -167,11 +165,14 @@ scrollbar.grid(row=11, column =1, sticky = 'ns')
 listbox.config(yscrollcommand=scrollbar.set)
 scrollbar.config(command=listbox.yview)
 
-#ttk.Label(mainframe, textvariable=description).grid(column=2, row=5, sticky=(W, E))
-#todo: add a place to put a discription of transaction 
-#todo: add a place to put a date of Transaction
-#todo: output the total of the month for starters and other handy reports like a balance sheet ect. 
-#todo: have a month selector that can be used to look at each month. 
+#call reload list to populate list on open
+reload_list()
+
+#TODO: remove line items from list
+#TODO: organize list so that it is pretty
+
+#TODO: output the total of the month for starters and other handy reports like a balance sheet ect. 
+#TODO: have a month selector that can be used to look at each month mayhaps other date selectors ect. 
 ttk.Label(mainframe, text="Addtional transactions").grid(column=2, row=1, sticky=W)
 ttk.Label(mainframe, text="Dollars:").grid(column=1, row=2, sticky=W)
 ttk.Label(mainframe, text="Description:").grid(column=1, row=3, sticky=W)

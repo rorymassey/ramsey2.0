@@ -19,3 +19,13 @@ Date added:2025-11-18 22:04:41.626959, Amount: 33.0, Description: creating a new
 Date added:2025-11-18 22:06:44.410943, Amount: 77.0, Description: paid money to home depot , Date of transaction: 11-18-2025 
 Date added:2025-11-18 22:06:51.428964, Amount: 77.0, Description: paid money to home depot , Date of transaction: 11-18-2025 
 Date added:2025-11-18 22:06:51.961304, Amount: 77.0, Description: paid money to home depot , Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:17:55.663690, Amount: 3.0, Description: 3, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:19:15.625061, Amount: 234.0, Description: asdf, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:21:18.536934, Amount: 33.0, Description: ahhh, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:21:24.533058, Amount: 33.0, Description: not ahhh, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:22:53.515782, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:22:56.908339, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:22:57.509592, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:22:57.695503, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:22:57.812944, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
+Date added:2025-11-18 22:22:58.091064, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
