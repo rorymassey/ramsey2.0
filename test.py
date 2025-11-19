@@ -1,14 +1,27 @@
-from PIL import *
-from tkinter import * 
 
+import tkinter as tk
 
-window = Tk()
+root = tk.Tk()
+root.title("Scrollable List")
 
-window.geometry("666x666")
-window.title("finance gui")
-window.config(background="#360e40")
+# Frame to hold Listbox and Scrollbar
+frame = tk.Frame(root)
+frame.pack(padx=10, pady=10)
 
-#icon = Image.PhotoImage(Image.open(file='skydive.png'))
-#window.iconphoto(True, icon)
+# Create Listbox
+listbox = tk.Listbox(frame, height=10, width=30)
+listbox.pack(side=tk.LEFT, fill=tk.BOTH)
 
-window.mainloop() #listens for events and creates a window 
+# Add items to Listbox
+for i in range(50):
+    listbox.insert(tk.END, f"Item {i+1}")
+
+# Create Scrollbar
+scrollbar = tk.Scrollbar(frame, orient=tk.VERTICAL)
+scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+# Link Scrollbar and Listbox
+listbox.config(yscrollcommand=scrollbar.set)
+scrollbar.config(command=listbox.yview)
+
+root.mainloop()

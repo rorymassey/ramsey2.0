@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 from datetime import datetime
+
+#used for putting a background on (doesn't work currently)
 #from PIL import *
 import sqlite3
 import ctypes
@@ -103,7 +105,7 @@ root.title("Balance Sheet")
 root.iconbitmap("money.ico")
 mainframe = ttk.Frame(root, padding=(200, 200, 400, 400))
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
-#mainframe.config(background="#360e40")
+#mainframe.config(background="#721888")
 dollars = StringVar()
 total = StringVar()
 description = StringVar()
@@ -128,15 +130,32 @@ date_entry.grid(column=2, row=4, sticky=(W, E))
 ttk.Label(mainframe, textvariable=total_of_file1).grid(column=2, row=9, sticky=(W, E))
 ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
 
+
+# Create Listbox
+listbox = Listbox(mainframe, height=10, width=30)
+listbox.grid(row=11, column =0, sticky = 'ns')
+
+# Add items to Listbox
+for i in range(50):
+    listbox.insert(END, f"Item {i+1}")
+
+# Create Scrollbar
+scrollbar = Scrollbar(mainframe, orient=VERTICAL)
+scrollbar.grid(row=11, column =1, sticky = 'ns')
+
+# Link Scrollbar and Listbox
+listbox.config(yscrollcommand=scrollbar.set)
+scrollbar.config(command=listbox.yview)
+
+
 # display all results of active transactions
 test = display_line_items()
 #print(test)
 x = StringVar()
 x.set("23")
-
 #prevent garabage collection of the var values 
 vars_list = []
-y = 11
+y = 23
 #for loop to print out the values 
 for i in test:
     #print(test[i])
@@ -167,10 +186,15 @@ ttk.Label(mainframe, text="Date").grid(column=1, row=4, sticky=W)
 ttk.Button(mainframe, text="Add", command=run_all_funcs).grid(column=3, row=4, sticky=W)
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
+
 mainframe.columnconfigure(2, weight=1)
+
+
 for child in mainframe.winfo_children(): 
     child.grid_configure(padx=5, pady=5)
 dollars_entry.focus()
+
+
 
 root.bind("<Return>", run_all_funcs)
 root.mainloop()
