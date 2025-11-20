@@ -40,7 +40,7 @@ def add_to_table(*args):
             """CREATE TABLE IF NOT EXISTS transactions (id INTEGER PRIMARY KEY, date_added TEXT, amount TEXT, date_of_transaction TEXT, description TEXT, hide INTEGER )"""
         )
         cursor.execute(
-            "INSERT INTO  transactions (date_added, amount, date_of_transaction,description, hide) VALUES (?,?,?,?,?)", (str(auto_date),str(dollars_db),str(date_db),str(description_db), 1)
+            "INSERT INTO  transactions (date_added, amount, date_of_transaction,description, hide) VALUES (?,?,?,?,?)", (str(auto_date),str(dollars_db),str(date_db),str(description_db), 0)
         )
         conn.commit()
         conn.close()
@@ -88,21 +88,35 @@ def reload_list():
     all_display_items = display_line_items()
     #prevent garabage collection of the var values 
     vars_list = []
-    y = 23
     #for loop to print out the values 
     for i in all_display_items:
-        #print(test[i])
-        temp = all_display_items[i]
-        #print(temp)
         var = StringVar()
         vars_list.append(var)
         var = all_display_items[i]
-        print(var)
-        #ttk.Label(mainframe, textvariable=var).grid(column=2, row=y, sticky=(W, E))
-        listbox.insert(END, f"Amount: {var[0]} Date: {var[1]} Description: {var[2]}")
-        y+= 1 
+        listbox.insert(END, f"id:{i}          Amount:   {var[0]}          Date:   {var[1]}           Description:   {var[2]}")
+        
 
 
+def on_item_click(event):
+    # Get selected index
+    selection = listbox.curselection()
+    #print(selection)
+    if selection:
+        index = selection[0]
+        value = listbox.get(index)
+        start = 'id:'
+        end = ' '
+        start_index = value.find(start) + len(start)
+        end_index = value.find(end)
+        transaction_id = value[start_index:end_index]
+        #debug print
+        #print(f"Clicked item value: {transaction_id}")
+        #remove items from db 
+        conn = sqlite3.connect("transactions.db")
+        cursor  = conn.cursor()
+        cursor.execute("update transactions set hide = 0 where id = ?", transaction_id)
+        conn.commit()
+        conn.close()
 
 def run_all_funcs():
     try:
@@ -154,7 +168,8 @@ ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
 # Create box to display the whole dang list
 listbox = Listbox(mainframe, height=50, width=100)
 listbox.grid(row=11, column =2, sticky = (W, E))
-
+#runs function to delete row
+listbox.bind("<Button-1>", on_item_click)
 
 # Create Scrollbar
 scrollbar = Scrollbar(mainframe, orient=VERTICAL)

@@ -29,3 +29,5 @@ Date added:2025-11-18 22:22:57.509592, Amount: 345.0, Description: sjdlfg, Date 
 Date added:2025-11-18 22:22:57.695503, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
 Date added:2025-11-18 22:22:57.812944, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
 Date added:2025-11-18 22:22:58.091064, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
+Date added:2025-11-19 18:30:42.931995, Amount: 33.0, Description: asdf, Date of transaction: 11-19-2025 
+Date added:2025-11-19 18:44:19.203797, Amount: 32.0, Description: adsf, Date of transaction: 11-19-2025 

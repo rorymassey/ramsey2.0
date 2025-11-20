@@ -1,27 +1,26 @@
 
 import tkinter as tk
 
+def on_item_click(event):
+    # Get selected index
+    selection = listbox.curselection()
+    if selection:
+        index = selection[0]
+        value = listbox.get(index)
+        print(f"Clicked item value: {value}")
+        # You can return or process this value here
+
 root = tk.Tk()
-root.title("Scrollable List")
 
-# Frame to hold Listbox and Scrollbar
-frame = tk.Frame(root)
-frame.pack(padx=10, pady=10)
+listbox = tk.Listbox(root)
+listbox.pack()
 
-# Create Listbox
-listbox = tk.Listbox(frame, height=10, width=30)
-listbox.pack(side=tk.LEFT, fill=tk.BOTH)
+# Add items
+items = ["Line1", "Line2", "Line3"]
+for item in items:
+    listbox.insert(tk.END, item)
 
-# Add items to Listbox
-for i in range(50):
-    listbox.insert(tk.END, f"Item {i+1}")
-
-# Create Scrollbar
-scrollbar = tk.Scrollbar(frame, orient=tk.VERTICAL)
-scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-
-# Link Scrollbar and Listbox
-listbox.config(yscrollcommand=scrollbar.set)
-scrollbar.config(command=listbox.yview)
+# Bind click event
+listbox.bind("<Button-1>", on_item_click)
 
 root.mainloop()
