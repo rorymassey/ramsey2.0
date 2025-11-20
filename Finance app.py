@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 from datetime import datetime
+
 
 #used for putting a background on (doesn't work currently)
 #from PIL import *
@@ -8,7 +10,8 @@ import sqlite3
 import ctypes
 
 # Connect to an existing database or create a new one
-
+#TODO: remove the inital function used to populate the txt total and create a sql function to calc the total 
+#TODO: create a button that lets you export a csv of your data. 
 
 
 def calculate(*args):
@@ -71,7 +74,7 @@ def display(*args):
 def display_line_items(*args):
     conn = sqlite3.connect("transactions.db")
     cursor  = conn.cursor()
-    cursor.execute("select * From transactions")
+    cursor.execute("select * From transactions where hide = 0")
 # Fetch all rows
     rows = cursor.fetchall()
 # Convert to dictionary (id as key, name as value)
@@ -96,36 +99,45 @@ def reload_list():
         listbox.insert(END, f"id:{i}          Amount:   {var[0]}          Date:   {var[1]}           Description:   {var[2]}")
         
 
-
+#hiding lines from the view 
 def on_item_click(event):
     # Get selected index
     selection = listbox.curselection()
     #print(selection)
     if selection:
-        index = selection[0]
-        value = listbox.get(index)
-        start = 'id:'
-        end = ' '
-        start_index = value.find(start) + len(start)
-        end_index = value.find(end)
-        transaction_id = value[start_index:end_index]
-        #debug print
-        #print(f"Clicked item value: {transaction_id}")
-        #remove items from db 
-        conn = sqlite3.connect("transactions.db")
-        cursor  = conn.cursor()
-        cursor.execute("update transactions set hide = 0 where id = ?", transaction_id)
-        conn.commit()
-        conn.close()
+        x = ask_yes_no()
+        if x == 'y':
+            index = selection[0]
+            value = listbox.get(index)
+            start = 'id:'
+            end = ' '
+            start_index = value.find(start) + len(start)
+            end_index = value.find(end)
+            transaction_id = value[start_index:end_index]
+            #debug print
+            #print(f"Clicked item value: {transaction_id}")
+            #remove items from db 
+            conn = sqlite3.connect("transactions.db")
+            cursor  = conn.cursor()
+            cursor.execute("update transactions set hide = 1 where id = ?", (transaction_id,))
+            conn.commit()
+            conn.close()
+            reload_list()
+#yes no function parired with on_item_click to confirm deletion of a line. 
+def ask_yes_no():
+    answer = messagebox.askyesno("Confirmation", "DO YOU WANT TO DELETE?")
+    if answer:
+        return "y"
+    else:
+        return "n"
 
-def run_all_funcs():
+def run_all_funcs(*args):
     try:
         calculate()
         display()
         add_to_table()
         display_line_items()
         reload_list()
-     
     except:
         pass
 
@@ -184,6 +196,7 @@ scrollbar.config(command=listbox.yview)
 reload_list()
 
 #TODO: remove line items from list
+    #TODO: make the removed lines all show up in a hidden column or when you select hide 
 #TODO: organize list so that it is pretty
 
 #TODO: output the total of the month for starters and other handy reports like a balance sheet ect. 

@@ -1,26 +1,19 @@
 
 import tkinter as tk
+from tkinter import messagebox
 
-def on_item_click(event):
-    # Get selected index
-    selection = listbox.curselection()
-    if selection:
-        index = selection[0]
-        value = listbox.get(index)
-        print(f"Clicked item value: {value}")
-        # You can return or process this value here
+def ask_yes_no():
+    answer = messagebox.askyesno("Confirmation", "Do you want to continue?")
+    if answer:
+        print("User clicked Yes")
+    else:
+        print("User clicked No")
 
 root = tk.Tk()
+root.title("Yes/No Example")
+root.geometry("300x200")
 
-listbox = tk.Listbox(root)
-listbox.pack()
-
-# Add items
-items = ["Line1", "Line2", "Line3"]
-for item in items:
-    listbox.insert(tk.END, item)
-
-# Bind click event
-listbox.bind("<Button-1>", on_item_click)
+button = tk.Button(root, text="Ask Yes/No", command=ask_yes_no)
+button.pack(pady=20)
 
 root.mainloop()

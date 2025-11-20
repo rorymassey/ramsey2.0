@@ -31,3 +31,23 @@ Date added:2025-11-18 22:22:57.812944, Amount: 345.0, Description: sjdlfg, Date 
 Date added:2025-11-18 22:22:58.091064, Amount: 345.0, Description: sjdlfg, Date of transaction: 11-18-2025 
 Date added:2025-11-19 18:30:42.931995, Amount: 33.0, Description: asdf, Date of transaction: 11-19-2025 
 Date added:2025-11-19 18:44:19.203797, Amount: 32.0, Description: adsf, Date of transaction: 11-19-2025 
+Date added:2025-11-20 07:32:25.683499, Amount: 32.0, Description: saasfsfd, Date of transaction: 11-20-2025 
+Date added:2025-11-20 07:34:01.972944, Amount: 4.0, Description: a, Date of transaction: 11-20-2025 
+Date added:2025-11-20 07:38:27.196179, Amount: 333.0, Description: ahhhh, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:08:51.911167, Amount: -100.0, Description: concrete, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:09:12.640405, Amount: -750.0, Description: car, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:10:05.328519, Amount: 33.0, Description: stuff , Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:17:37.086678, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:17:42.819019, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:18:21.722274, Amount: 33.0, Description: ASDF, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:20:13.631004, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:20:22.959616, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:21:13.739431, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:21:16.832252, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:21:20.762288, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:21:20.926495, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:23:39.707774, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:23:39.899074, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:23:40.103987, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:23:40.312541, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
+Date added:2025-11-20 17:23:40.546885, Amount: 33.0, Description: asdf, Date of transaction: 11-20-2025 
