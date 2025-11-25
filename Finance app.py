@@ -12,6 +12,8 @@ import ctypes
 # Connect to an existing database or create a new one
 #TODO: remove the inital function used to populate the txt total and create a sql function to calc the total 
 #TODO: create a button that lets you export a csv of your data. 
+#TODO: abstract some functions out into another page, starting with just one funct. 
+
 
 
 def calculate(*args):
@@ -28,7 +30,6 @@ def calculate(*args):
             #file.write(f"Inches: {value * 12}")
     except ValueError:
         pass
-
 
 #add values from input to table
 def add_to_table(*args):
@@ -51,7 +52,7 @@ def add_to_table(*args):
         pass
 
 
-#display total
+#display total change this to create an exported csv only when a button is clicked. 
 def display(*args):
     try: 
         with open("totaldollars.txt", "r" ) as file:
@@ -67,22 +68,40 @@ def display(*args):
                 if temp:
                     total_of_file += float(temp)
             #pass value out to tkinter        
-            total_of_file1.set(f"${total_of_file}")    
+            #total_of_file1.set(f"${total_of_file}")    
     except: 
         pass
+
+#same function as display total but uses sql not the csv file. 
+def total_calculate():
+    conn = sqlite3.connect("transactions.db")
+    cursor  = conn.cursor()
+    cursor.execute("select sum(amount) From transactions where hide = 0")
+    # Fetch all rows
+    rows = cursor.fetchall()
+    rows_tup = rows[0]
+    # Convert to dictionary (id as key, name as value)
+    #total_calculate = rows
+    total_of_file1.set(f"${rows_tup[0]}")
+    #display all active lines in tk form 
+    #print(result_dict)
+    conn.commit()
+    conn.close()
+    #return total_calculate
+
 
 def display_line_items(*args):
     conn = sqlite3.connect("transactions.db")
     cursor  = conn.cursor()
     cursor.execute("select * From transactions where hide = 0")
-# Fetch all rows
+    # Fetch all rows
     rows = cursor.fetchall()
-# Convert to dictionary (id as key, name as value)
+    # Convert to dictionary (id as key, name as value)
     result_dict = {row[0]: (row[2],row[3],row[4]) for row in rows}
     #display all active lines in tk form 
     #print(result_dict)
     conn.commit()
-    conn.close()
+    conn.close() 
     return result_dict
 
 def reload_list():
@@ -130,14 +149,37 @@ def ask_yes_no():
         return "y"
     else:
         return "n"
+#function to filter out what displays and total so that we can add button functionality easier. 
+def filter_id(month=None, year=None):
+    sql_month = 0
+    sql_year = 0 
+    if month == None and year == None:
+        sql_month = datetime.now().strftime("%m")
+        sql_year = datetime.now().strftime("%Y")
+    conn = sqlite3.connect("transactions.db")
+    cursor  = conn.cursor()
+    cursor.execute("""select id from transactions where strftime('%m', date_of_transaction) = ?
+                    and strftime('%Y', date_of_transaction) = ? and hide = 0""", (sql_month, sql_year))
+    rows = cursor.fetchall()
+    print(rows)
+    #print(rows)
+    #for x in rows:
+        #print(x)
+        #rows_tup = x[0]
+        #print(x)
+    conn.commit()
+    conn.close()
+
 
 def run_all_funcs(*args):
     try:
         calculate()
-        display()
+        total_calculate()
+        #display()
         add_to_table()
         display_line_items()
         reload_list()
+        filter_id()
     except:
         pass
 
@@ -157,7 +199,8 @@ total = StringVar()
 description = StringVar()
 total_of_file1 = StringVar()
 #amt of transaction 
-display()
+total_calculate()
+
 dollars_entry = ttk.Entry(mainframe, width=10, textvariable=dollars)
 dollars_entry.grid(column=2, row=2, sticky=(W, E))
 #description of transaction 
@@ -167,7 +210,7 @@ description_entry.grid(column=2, row=3, sticky=(W, E))
 #date of transaction (prepopulates with today's date but its modifiable)
 date = StringVar()
 ugly_date = datetime.now()
-date =  str(ugly_date.month) + '-'+ str(ugly_date.day) + '-'+ str(ugly_date.year)
+date =  str(ugly_date.year)+ '-'+  str(ugly_date.month) + '-'+ str(ugly_date.day) 
 date = StringVar(value = date )
 date_entry = ttk.Entry(mainframe, width=10, textvariable=date)
 date_entry.grid(column=2, row=4, sticky=(W, E))
@@ -188,18 +231,19 @@ scrollbar = Scrollbar(mainframe, orient=VERTICAL)
 scrollbar.grid(row=11, column =3, sticky = (W, E))
 #TODO: maybe create a horrizontal scroll bar later? 
 
-# Link Scrollbar and Listbox
+#Link Scrollbar and Listbox
 listbox.config(yscrollcommand=scrollbar.set)
 scrollbar.config(command=listbox.yview)
 
 #call reload list to populate list on open
 reload_list()
 
-#TODO: remove line items from list
-    #TODO: make the removed lines all show up in a hidden column or when you select hide 
+#(default to display current month/year)
+#TODO: have a button that you can click to display only specific months and years. 
+    #TODO: make the removed lines all show up in a hidden column or when you select hide and you can click them to restore
 #TODO: organize list so that it is pretty
+#TODO: buttons for handy reports like a balance sheet ect. 
 
-#TODO: output the total of the month for starters and other handy reports like a balance sheet ect. 
 #TODO: have a month selector that can be used to look at each month mayhaps other date selectors ect. 
 ttk.Label(mainframe, text="Addtional transactions").grid(column=2, row=1, sticky=W)
 ttk.Label(mainframe, text="Dollars:").grid(column=1, row=2, sticky=W)
