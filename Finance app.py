@@ -93,11 +93,19 @@ def total_calculate():
 def display_line_items(*args):
     conn = sqlite3.connect("transactions.db")
     cursor  = conn.cursor()
+    #retrive list of active IDs 
+    pretty_list = filter_id()
+    #initialize dict for displayed items. 
+    result_dict ={}
     cursor.execute("select * From transactions where hide = 0")
-    # Fetch all rows
-    rows = cursor.fetchall()
     # Convert to dictionary (id as key, name as value)
-    result_dict = {row[0]: (row[2],row[3],row[4]) for row in rows}
+     # Fetch all rows
+    rows = cursor.fetchall()
+    for row in rows:
+        if row[0] in pretty_list:
+            result_dict[row[0]] = (row[2],row[3],row[4])
+   
+
     #display all active lines in tk form 
     #print(result_dict)
     conn.commit()
@@ -149,7 +157,8 @@ def ask_yes_no():
         return "y"
     else:
         return "n"
-#function to filter out what displays and total so that we can add button functionality easier. 
+#function to filter out what displays and total so that we can add button functionality easier.
+# TODO: get these id's to be used for the default display (need to be cleaned up and used for the totatl_calculate function adn the display line items list. ) 
 def filter_id(month=None, year=None):
     sql_month = 0
     sql_year = 0 
@@ -161,14 +170,12 @@ def filter_id(month=None, year=None):
     cursor.execute("""select id from transactions where strftime('%m', date_of_transaction) = ?
                     and strftime('%Y', date_of_transaction) = ? and hide = 0""", (sql_month, sql_year))
     rows = cursor.fetchall()
-    print(rows)
-    #print(rows)
-    #for x in rows:
-        #print(x)
-        #rows_tup = x[0]
-        #print(x)
+    pretty_rows = []
+    for i in rows:
+        pretty_rows.append(i[0])
     conn.commit()
     conn.close()
+    return pretty_rows
 
 
 def run_all_funcs(*args):
