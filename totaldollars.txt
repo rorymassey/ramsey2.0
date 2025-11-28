@@ -110,3 +110,4 @@ Date added:2025-11-28 15:36:57.358627, Amount: 33.0, Description: s, Date of tra
 Date added:2025-11-28 15:42:40.956620, Amount: 33.0, Description: asd, Date of transaction: 2025-11-28 
 Date added:2025-11-28 15:44:05.324591, Amount: 33.0, Description: s, Date of transaction: 2025-11-28 
 Date added:2025-11-28 15:45:36.020777, Amount: 33.0, Description: asd, Date of transaction: 2025-11-28 
+Date added:2025-11-28 16:16:20.213251, Amount: 33.0, Description: a, Date of transaction: 2025-11-28 
