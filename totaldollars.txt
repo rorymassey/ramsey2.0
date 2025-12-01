@@ -111,3 +111,20 @@ Date added:2025-11-28 15:42:40.956620, Amount: 33.0, Description: asd, Date of t
 Date added:2025-11-28 15:44:05.324591, Amount: 33.0, Description: s, Date of transaction: 2025-11-28 
 Date added:2025-11-28 15:45:36.020777, Amount: 33.0, Description: asd, Date of transaction: 2025-11-28 
 Date added:2025-11-28 16:16:20.213251, Amount: 33.0, Description: a, Date of transaction: 2025-11-28 
+Date added:2025-12-01 14:32:50.932098, Amount: 33.0, Description: asd, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:32:52.447431, Amount: 33.0, Description: asd, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:33:00.148564, Amount: 33.0, Description: asd, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:33:02.830858, Amount: 4444.0, Description: asd, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:33:42.149407, Amount: 33.0, Description: asdf, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:33:44.796775, Amount: 33.0, Description: asdf, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:33:45.236553, Amount: 33.0, Description: asdf, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:33:45.412971, Amount: 33.0, Description: asdf, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:33:45.573744, Amount: 33.0, Description: asdf, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:33:45.718923, Amount: 33.0, Description: asdf, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:49:51.471764, Amount: 333.0, Description: 3, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:49:53.631889, Amount: 333.0, Description: 3, Date of transaction: 2025-12-1 
+Date added:2025-12-01 14:50:01.823448, Amount: 333.0, Description: 3, Date of transaction:  
+Date added:2025-12-01 14:54:08.497399, Amount: 33.0, Description: as, Date of transaction: 2025-12-01 
+Date added:2025-12-01 14:54:09.176370, Amount: 33.0, Description: as, Date of transaction: 2025-12-01 
+Date added:2025-12-01 14:54:09.617021, Amount: 33.0, Description: as, Date of transaction: 2025-12-01 
+Date added:2025-12-01 14:54:10.057152, Amount: 33.0, Description: as, Date of transaction: 2025-12-01 

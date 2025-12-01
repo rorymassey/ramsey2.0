@@ -192,7 +192,6 @@ def run_all_funcs(*args):
 
 #change the icon for windows 
 
-
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("fi.mycompany.334488jksethut")
 
 root = Tk()
@@ -210,6 +209,7 @@ total_calculate()
 
 dollars_entry = ttk.Entry(mainframe, width=10, textvariable=dollars)
 dollars_entry.grid(column=2, row=2, sticky=(W, E))
+
 #description of transaction 
 description_entry = ttk.Entry(mainframe, width=10, textvariable=description)
 description_entry.grid(column=2, row=3, sticky=(W, E))
@@ -217,7 +217,7 @@ description_entry.grid(column=2, row=3, sticky=(W, E))
 #date of transaction (prepopulates with today's date but its modifiable)
 date = StringVar()
 ugly_date = datetime.now()
-date =  str(ugly_date.year)+ '-'+  str(ugly_date.month) + '-'+ str(ugly_date.day) 
+date = ugly_date.strftime("%Y-%m-%d")
 date = StringVar(value = date )
 date_entry = ttk.Entry(mainframe, width=10, textvariable=date)
 date_entry.grid(column=2, row=4, sticky=(W, E))
@@ -245,7 +245,7 @@ scrollbar.config(command=listbox.yview)
 #TODO: have a month selector that can be used to look at each month mayhaps other date selectors ect. 
     #TODO: get the month and year to open a box that will add a value into filter_id function line 162
 # Create box to display a list of months 
-ttk.Button(mainframe, text="Month").grid(column=2, row=9, sticky=W)
+ttk.Button(mainframe, text="Month").grid(column=4, row=9, sticky=W)
 #Create a box to select years
 ttk.Button(mainframe, text="Year").grid(column=3, row=9, sticky=E)
 
