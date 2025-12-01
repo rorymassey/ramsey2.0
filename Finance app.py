@@ -52,7 +52,7 @@ def add_to_table(*args):
         pass
 
 
-#display total change this to create an exported csv only when a button is clicked. 
+#TODO: this used to display total, change this to create an exported csv only when a button is clicked. 
 def display(*args):
     try: 
         with open("totaldollars.txt", "r" ) as file:
@@ -124,10 +124,11 @@ def reload_list():
         vars_list.append(var)
         var = all_display_items[i]
         listbox.insert(END, f"id:{i}          Amount:   {var[0]}          Date:   {var[1]}           Description:   {var[2]}")
-        
 
+
+    
 #hiding lines from the view 
-def on_item_click(event):
+def delete_row(event):
     # Get selected index
     selection = listbox.curselection()
     #print(selection)
@@ -150,13 +151,24 @@ def on_item_click(event):
             conn.commit()
             conn.close()
             reload_list()
-#yes no function parired with on_item_click to confirm deletion of a line. 
+#yes no function parired with delete_row to confirm deletion of a line. 
 def ask_yes_no():
     answer = messagebox.askyesno("Confirmation", "DO YOU WANT TO DELETE?")
     if answer:
         return "y"
     else:
         return "n"
+
+#function to show all months and then let you select one also have it update a global variable for month and year. 
+def select_month():
+    items = ["Apple", "Banana", "Cherry", "Date", "Elderberry"]
+    if not hasattr(select_month, "created"):
+        combo = ttk.Combobox(root, values=items, state="readonly")
+        combo.current(0)
+        combo.grid(column=4, row=10, sticky=E)
+        select_month.created = True
+      
+
 #function to filter out what displays and total so that we can add button functionality easier.
 # TODO: get these id's to be used for the default display (need to be cleaned up and used for the totatl_calculate function adn the display line items list. ) 
 def filter_id(month=None, year=None):
@@ -176,7 +188,6 @@ def filter_id(month=None, year=None):
     conn.commit()
     conn.close()
     return pretty_rows
-
 
 def run_all_funcs(*args):
     try:
@@ -228,25 +239,28 @@ ttk.Label(mainframe, textvariable=total).grid(column=2, row=8, sticky=(W, E))
 
 
 # Create box to display the whole dang list
-listbox = Listbox(mainframe, height=50, width=100)
+listbox = Listbox(mainframe, height=50, width=70)
 listbox.grid(row=11, column =2, sticky = (W, E))
 #runs function to delete row
-listbox.bind("<Button-1>", on_item_click)
+listbox.bind("<Button-1>", delete_row)
 
 # Create Scrollbar
-scrollbar = Scrollbar(mainframe, orient=VERTICAL)
-scrollbar.grid(row=11, column =3, sticky = (W, E))
+#TODO: fix the scroll bar 
+##scrollbar = Scrollbar(mainframe, orient=VERTICAL)
+##scrollbar.grid(row=11, column =3, sticky = (W, E))
 #TODO: maybe create a horrizontal scroll bar later? 
 
 #Link Scrollbar and Listbox
-listbox.config(yscrollcommand=scrollbar.set)
-scrollbar.config(command=listbox.yview)
+#TODO: fix the scroll bar 
+##listbox.config(yscrollcommand=scrollbar.set)
+##scrollbar.config(command=listbox.yview)
 
 #TODO: have a month selector that can be used to look at each month mayhaps other date selectors ect. 
     #TODO: get the month and year to open a box that will add a value into filter_id function line 162
 # Create box to display a list of months 
-ttk.Button(mainframe, text="Month").grid(column=4, row=9, sticky=W)
+ttk.Button(mainframe, text="Month", command=select_month).grid(column=4, row=9, sticky=W)
 #Create a box to select years
+
 ttk.Button(mainframe, text="Year").grid(column=3, row=9, sticky=E)
 
 #call reload list to populate list on open

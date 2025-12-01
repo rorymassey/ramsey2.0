@@ -1,19 +1,20 @@
 
 import tkinter as tk
-from tkinter import messagebox
-
-def ask_yes_no():
-    answer = messagebox.askyesno("Confirmation", "Do you want to continue?")
-    if answer:
-        print("User clicked Yes")
-    else:
-        print("User clicked No")
+from tkinter import ttk
 
 root = tk.Tk()
-root.title("Yes/No Example")
-root.geometry("300x200")
+root.title("Show selector on button click")
 
-button = tk.Button(root, text="Ask Yes/No", command=ask_yes_no)
-button.pack(pady=20)
+items = ["Apple", "Banana", "Cherry", "Date", "Elderberry"]
+
+def show_combobox():
+    if not hasattr(show_combobox, "created"):
+        combo = ttk.Combobox(root, values=items, state="readonly")
+        combo.current(0)
+        combo.pack(padx=10, pady=10)
+        show_combobox.created = True
+
+
+tk.Button(root, text="Show Combobox", command=show_combobox).pack(pady=6)
 
 root.mainloop()
