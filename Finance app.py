@@ -104,8 +104,6 @@ def display_line_items(*args):
     for row in rows:
         if row[0] in pretty_list:
             result_dict[row[0]] = (row[2],row[3],row[4])
-   
-
     #display all active lines in tk form 
     #print(result_dict)
     conn.commit()
@@ -128,6 +126,7 @@ def reload_list():
 
     
 #hiding lines from the view 
+#TODO: double click to bring up the delte (or right click)
 def delete_row(event):
     # Get selected index
     selection = listbox.curselection()
@@ -161,13 +160,20 @@ def ask_yes_no():
 
 #function to show all months and then let you select one also have it update a global variable for month and year. 
 def select_month():
-    items = ["Apple", "Banana", "Cherry", "Date", "Elderberry"]
+    conn = sqlite3.connect("transactions.db")
+    cursor  = conn.cursor()
+    cursor.execute("""select strftime('%m', date_of_transaction) from transactions where hide = 0 and strftime('%m', date_of_transaction) 
+                   is not null group by strftime('%m', date_of_transaction)""", )
+    rows = cursor.fetchall()
+    pretty_rows = []
+    for i in rows:
+        pretty_rows.append(i[0])
+    items = pretty_rows
     if not hasattr(select_month, "created"):
-        combo = ttk.Combobox(root, values=items, state="readonly")
+        combo = ttk.Combobox(mainframe, values=items, state="readonly")
         combo.current(0)
-        combo.grid(column=4, row=10, sticky=E)
-        select_month.created = True
-      
+        combo.grid(column=4, row=9, sticky=W)
+        combo.created = True
 
 #function to filter out what displays and total so that we can add button functionality easier.
 # TODO: get these id's to be used for the default display (need to be cleaned up and used for the totatl_calculate function adn the display line items list. ) 
@@ -201,8 +207,7 @@ def run_all_funcs(*args):
     except:
         pass
 
-#change the icon for windows 
-
+#TODO: does this work? change the icon for windows 
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("fi.mycompany.334488jksethut")
 
 root = Tk()

@@ -2,19 +2,31 @@
 import tkinter as tk
 from tkinter import ttk
 
+def show_menu(event=None):
+    # Position at the mouse or near the button
+    x = root.winfo_pointerx()
+    y = root.winfo_pointery()
+    menu.tk_popup(x, y)
+
+def on_pick(choice):
+    selected_var.set(choice)
+    print("Selected:", choice)
+
 root = tk.Tk()
-root.title("Show selector on button click")
+root.title("Popup Menu")
 
-items = ["Apple", "Banana", "Cherry", "Date", "Elderberry"]
+selected_var = tk.StringVar(value="(none)")
+options = ["Red", "Green", "Blue", "Yellow"]
 
-def show_combobox():
-    if not hasattr(show_combobox, "created"):
-        combo = ttk.Combobox(root, values=items, state="readonly")
-        combo.current(0)
-        combo.pack(padx=10, pady=10)
-        show_combobox.created = True
+menu = tk.Menu(root, tearoff=False)
+for opt in options:
+    menu.add_command(label=opt, command=lambda o=opt: on_pick(o))
 
-
-tk.Button(root, text="Show Combobox", command=show_combobox).pack(pady=6)
+ttk.Label(root, textvariable=selected_var).pack(padx=10, pady=(10, 4))
+btn = ttk.Button(root, text="Pick color", command=show_menu)
+btn.pack(padx=10, pady=10)
 
 root.mainloop()
+
+
+#do we have a general idea or a goal of when that would
