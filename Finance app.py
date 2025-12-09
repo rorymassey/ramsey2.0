@@ -159,6 +159,9 @@ def ask_yes_no():
         return "n"
 
 #function to show all months and then let you select one also have it update a global variable for month and year. 
+#TODO: get year and month returned to the filter id function
+#TODO: get new years and months to show added transactions. 
+#TODO: nice to have, return to saying month and year after selecting a date 
 def select_month():
     conn = sqlite3.connect("transactions.db")
     cursor  = conn.cursor()
@@ -174,6 +177,23 @@ def select_month():
         combo.current(0)
         combo.grid(column=4, row=9, sticky=W)
         combo.created = True
+#function to show all months and then let you select one also have it update a global variable for month and year. 
+
+def select_year():
+    conn = sqlite3.connect("transactions.db")
+    cursor  = conn.cursor()
+    cursor.execute("""select strftime('%Y', date_of_transaction) from transactions where hide = 0 and strftime('%Y', date_of_transaction) 
+                   is not null group by strftime('%Y', date_of_transaction)""", )
+    rows = cursor.fetchall()
+    pretty_rows = []
+    for i in rows:
+        pretty_rows.append(i[0])
+    items = pretty_rows
+    if not hasattr(select_year, "created"):
+        combo_year = ttk.Combobox(mainframe, values=items, state="readonly")
+        combo_year.current(0)
+        combo_year.grid(column=3, row=9, sticky=W)
+        combo_year.created = True
 
 #function to filter out what displays and total so that we can add button functionality easier.
 # TODO: get these id's to be used for the default display (need to be cleaned up and used for the totatl_calculate function adn the display line items list. ) 
@@ -266,7 +286,7 @@ listbox.bind("<Button-1>", delete_row)
 ttk.Button(mainframe, text="Month", command=select_month).grid(column=4, row=9, sticky=W)
 #Create a box to select years
 
-ttk.Button(mainframe, text="Year").grid(column=3, row=9, sticky=E)
+ttk.Button(mainframe, text="Year", command=select_year).grid(column=3, row=9, sticky=E)
 
 #call reload list to populate list on open
 reload_list()
