@@ -161,8 +161,8 @@ def ask_yes_no():
 #function to show all months and then let you select one also have it update a global variable for month and year. 
 #TODO: get year and month returned to the filter id function
 #TODO: get new years and months to show added transactions. 
-#TODO: nice to have, return to saying month and year after selecting a date 
-def select_month():
+#TODO: nice to have, return to saying month and year after selecting a date maybe not tbh
+def select_month(*args):
     conn = sqlite3.connect("transactions.db")
     cursor  = conn.cursor()
     cursor.execute("""select strftime('%m', date_of_transaction) from transactions where hide = 0 and strftime('%m', date_of_transaction) 
@@ -173,10 +173,18 @@ def select_month():
         pretty_rows.append(i[0])
     items = pretty_rows
     if not hasattr(select_month, "created"):
-        combo = ttk.Combobox(mainframe, values=items, state="readonly")
-        combo.current(0)
-        combo.grid(column=4, row=9, sticky=W)
-        combo.created = True
+        combo_month = ttk.Combobox(mainframe, values=items, state="readonly")
+        combo_month.current(0)
+        combo_month.grid(column=4, row=9, sticky=W)
+        combo_month.created = True
+    combo_month.bind("<<ComboboxSelected>>", on_month_change)
+    global_month = combo_month.get()
+    print(global_month)
+#function to use the results from select_month + select_year
+def on_month_change(event= None):
+    print(f"Selected month: {(combo_month.get())}")
+
+
 #function to show all months and then let you select one also have it update a global variable for month and year. 
 
 def select_year():
@@ -194,6 +202,7 @@ def select_year():
         combo_year.current(0)
         combo_year.grid(column=3, row=9, sticky=W)
         combo_year.created = True
+        ## Bind the virtual event fired when the selection changes
 
 #function to filter out what displays and total so that we can add button functionality easier.
 # TODO: get these id's to be used for the default display (need to be cleaned up and used for the totatl_calculate function adn the display line items list. ) 
@@ -229,6 +238,12 @@ def run_all_funcs(*args):
 
 #TODO: does this work? change the icon for windows 
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("fi.mycompany.334488jksethut")
+
+#global variable to determine date range updated by select month and select year
+global_year = ''
+global_month = ''
+combo_year = ''
+combo_month = ''
 
 root = Tk()
 root.title("Balance Sheet")
@@ -281,10 +296,9 @@ listbox.bind("<Button-1>", delete_row)
 ##scrollbar.config(command=listbox.yview)
 
 #TODO: have a month selector that can be used to look at each month mayhaps other date selectors ect. 
-    #TODO: get the month and year to open a box that will add a value into filter_id function line 162
-# Create box to display a list of months 
+#TODO: get the month and year to open a box that will add a value into filter_id function line 162
 ttk.Button(mainframe, text="Month", command=select_month).grid(column=4, row=9, sticky=W)
-#Create a box to select years
+
 
 ttk.Button(mainframe, text="Year", command=select_year).grid(column=3, row=9, sticky=E)
 

@@ -1,32 +1,56 @@
 
+import sqlite3
 import tkinter as tk
 from tkinter import ttk
-
-def show_menu(event=None):
-    # Position at the mouse or near the button
-    x = root.winfo_pointerx()
-    y = root.winfo_pointery()
-    menu.tk_popup(x, y)
-
-def on_pick(choice):
-    selected_var.set(choice)
-    print("Selected:", choice)
+from tkinter.constants import W
 
 root = tk.Tk()
-root.title("Popup Menu")
+mainframe = ttk.Frame(root)
+mainframe.grid(sticky="nsew")
 
-selected_var = tk.StringVar(value="(none)")
-options = ["Red", "Green", "Blue", "Yellow"]
+def on_month_change(event=None):
+    # Access the stored combobox and print current selection
+    combo = select_month.combo
+    value = combo.get()        # selected text (e.g., "01", "02", ...)
+    index = combo.current()    # selected index (0-based)
+    print(f"Selected month: {value} (index {index})")
 
-menu = tk.Menu(root, tearoff=False)
-for opt in options:
-    menu.add_command(label=opt, command=lambda o=opt: on_pick(o))
+def select_month(*args):
+    # 1) Read months from DB
+    conn = sqlite3.connect("transactions.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT strftime('%m', date_of_transaction)
+        FROM transactions
+        WHERE hide = 0 
+          AND strftime('%m', date_of_transaction) IS NOT NULL
+        GROUP BY strftime('%m', date_of_transaction)
+        ORDER BY strftime('%m', date_of_transaction)
+    """)
+    rows = cursor.fetchall()
+    conn.close()
 
-ttk.Label(root, textvariable=selected_var).pack(padx=10, pady=(10, 4))
-btn = ttk.Button(root, text="Pick color", command=show_menu)
-btn.pack(padx=10, pady=10)
+    items = [row[0] for row in rows]  # e.g., ['01','02','03', ...]
 
-root.mainloop()
+    # 2) Create combobox once, or update values if it already exists
+    if not hasattr(select_month, "combo"):
+        select_month.combo = ttk.Combobox(mainframe, values=items, state="readonly")
+        select_month.combo.grid(column=4, row=9, sticky=W)
 
+        # Optional initial selection (only the first time):
+        if items:
+            select_month.combo.current(0)
 
-#do we have a general idea or a goal of when that would
+        # Bind to selection change so you get the user's choice immediately
+        select_month.combo.bind("<<ComboboxSelected>>", on_month_change)
+    else:
+        # Just update the list of values; don't reset current selection unless you want to
+        select_month.combo["values"] = items
+
+    # If you still want to print the current value right after building/updating:
+    # (Note: this will reflect the initial selection if user hasn’t picked yet.)
+    print(select_month.combo.get())
+
+# Build the UI and populate
+select_month()
+

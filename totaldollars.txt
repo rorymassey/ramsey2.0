@@ -139,3 +139,6 @@ Date added:2025-12-09 08:31:22.099031, Amount: 3.0, Description: awesd, Date of 
 Date added:2025-12-09 10:24:20.038960, Amount: 33.0, Description: last year, Date of transaction: 2023-12-09 
 Date added:2025-12-09 10:24:22.486027, Amount: 33.0, Description: last year, Date of transaction: 2023-12-09 
 Date added:2025-12-09 10:24:22.935026, Amount: 33.0, Description: last year, Date of transaction: 2023-12-09 
+Date added:2025-12-16 09:34:36.462204, Amount: 11.0, Description: asdf, Date of transaction: 2025-01-16 
+Date added:2025-12-16 09:34:36.878049, Amount: 11.0, Description: asdf, Date of transaction: 2025-01-16 
+Date added:2025-12-16 09:34:37.044636, Amount: 11.0, Description: asdf, Date of transaction: 2025-01-16 
